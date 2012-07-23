@@ -1,0 +1,32 @@
+[
+    {
+        "caption": "E-Max: Fill Paragraph",
+        "command": "emax_fill_paragraph"
+    }
+    ,{
+        "caption": "E-Max: Rebuild E-Max Keymaps",
+        "command": "emax_rebuild_keymaps"
+    }
+    ,{
+        "caption": "E-Max: Forward S-Expression",
+        "command": "emax_move_sexp",
+        "args": {"forward": true}
+    }
+    ,{
+        "caption": "E-Max: Backward S-Expression",
+        "command": "emax_move_sexp",
+        "args": {"forward": false}
+    }
+    ,{
+        "caption": "E-Max: Jump to Current Diff Hunk",
+        "command": "emax_jump_to_hunk"
+    }
+    ,{
+        "caption": "E-Max: Transpose Words",
+        "command": "emax_transpose_words"
+    }
+    ,{
+        "caption": "E-Max: Transpose Chars",
+        "command": "emax_transpose_chars"
+    }
+]

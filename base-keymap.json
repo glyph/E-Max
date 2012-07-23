@@ -1,0 +1,603 @@
+[
+    {
+        "keys": ["meta+b"],
+        "args": {"forward": false, "by": "words"},
+        "command": "move"
+    },
+    {
+        "keys": ["meta+q"],
+        "command": "emax_fill_paragraph"
+    },
+    {
+        "keys": ["meta+t"],
+        "command": "emax_transpose_words"
+    },
+    {
+        "keys": ["ctrl+t"],
+        "command": "emax_transpose_chars"
+    },
+    {
+        "keys": ["ctrl+x", "ctrl+c"],
+        "command": "exit"
+    },
+    {
+        "keys": ["ctrl+x", "ctrl+f"],
+        "args": {"show_files": true, "overlay": "goto"},
+        "command": "show_overlay"
+    },
+    {
+        "keys": ["meta+f"],
+        "args": {"forward": true, "by": "words"},
+        "command": "move"
+    },
+    {
+        "keys": ["ctrl+g"],
+        "command": "emax_beep"
+    },
+    {
+        "keys": ["ctrl+g"],
+        "command": "hide_auto_complete",
+        "context": [
+            {
+                "operator": "equal",
+                "operand": true,
+                "key": "auto_complete_visible"
+            }
+        ]
+    },
+    {
+        "keys": ["ctrl+g"],
+        "command": "emax_keyboard_quit",
+        "context": [
+            {
+                "operator": "equal",
+                "operand": true,
+                "key": "setting.emax_region_active"
+            }
+        ]
+    },
+    {
+        "keys": ["ctrl+g"],
+        "command": "hide_panel",
+        "context": [
+            {
+                "operator": "equal",
+                "operand": true,
+                "key": "panel_visible"
+            }
+        ]
+    },
+    {
+        "keys": ["ctrl+g"],
+        "command": "single_selection",
+        "context": [
+            {
+                "operator": "not_equal",
+                "operand": 1,
+                "key": "num_selections"
+            }
+        ]
+    },
+    {
+        "keys": ["ctrl+g"],
+        "command": "clear_fields",
+        "context": [
+            {
+                "operator": "equal",
+                "operand": true,
+                "key": "has_next_field"
+            }
+        ]
+    },
+    {
+        "keys": ["ctrl+g"],
+        "command": "clear_fields",
+        "context": [
+            {
+                "operator": "equal",
+                "operand": true,
+                "key": "has_prev_field"
+            }
+        ]
+    },
+    {
+        "keys": ["ctrl+g"],
+        "command": "hide_panel",
+        "context": [
+            {
+                "operator": "equal",
+                "operand": true,
+                "key": "panel_visible"
+            }
+        ]
+    },
+    {
+        "keys": ["ctrl+g"],
+        "command": "cancel",
+        "context": [
+            {
+                "operator": "equal",
+                "operand": true,
+                "key": "overlay_visible"
+            },
+            {
+                "operator": "equal",
+                "operand": true,
+                "key": "selection_empty",
+                "match_all": true
+            }
+        ]
+    },
+    {
+        "keys": ["ctrl+g"],
+        "command": "hide_auto_complete",
+        "context": [
+            {
+                "operator": "equal",
+                "operand": true,
+                "key": "auto_complete_visible"
+            }
+        ]
+    },
+    {
+        "keys": ["ctrl+g"],
+        "command": "emax_keyboard_quit",
+        "context": [
+            {
+                "operator": "not_equal",
+                "operand": true,
+                "key": "selection_empty"
+            }
+        ]
+    },
+    {
+        "keys": ["ctrl+a"],
+        "args": {"to": "bol"},
+        "command": "move_to"
+    },
+    {
+        "keys": ["ctrl+a"],
+        "args": {"to": "hardbol"},
+        "command": "move_to",
+        "context": [
+            {
+                "operator": "regex_match",
+                "operand": "^\\s$",
+                "match_all": true,
+                "key": "preceding_text"
+            }
+        ]
+    },
+    {
+        "keys": ["ctrl+e"],
+        "args": {"to": "hardeol"},
+        "command": "move_to"
+    },
+    {
+        "keys": ["ctrl+d"],
+        "command": "right_delete"
+    },
+    {
+        "keys": ["meta+d"],
+        "args": {
+            "forward": true
+        },
+        "command": "delete_word"
+    },
+    {
+        "keys": ["meta+backspace"],
+        "args": {"forward": false},
+        "command": "delete_word"
+    },
+    {
+        "keys": ["meta+c"],
+        "command": "title_case"
+    },
+    {
+        "keys": ["meta+u"],
+        "command": "upper_case"
+    },
+    {
+        "keys": ["meta+l"],
+        "command": "lower_case"
+    },
+    {
+        "keys": ["meta+ctrl+f"],
+        "args": {"forward": true},
+        "command": "emax_move_sexp"
+    },
+    {
+        "keys": ["meta+ctrl+b"],
+        "args": {"forward": false},
+        "command": "emax_move_sexp"
+    },
+    {
+        "keys": ["ctrl+shift+-"],
+        "command": "undo"
+    },
+    {
+        "keys": ["meta+ctrl+shift+-"],
+        "command": "redo"
+    },
+    {
+        "keys": ["ctrl+x", "ctrl+x"],
+        "command": "emax_exchange_point_and_mark"
+    },
+    {
+        "keys": ["ctrl+space"],
+        "command": "emax_set_mark"
+    },
+    {
+        "keys": ["meta+ctrl+shift+2"],
+        "command": "find_under_expand"
+    },
+    {
+        "keys": ["ctrl+y"],
+        "command": "emax_yank"
+    },
+    {
+        "keys": ["meta+y"],
+        "command": "emax_yank_pop"
+    },
+    {
+        "keys": ["ctrl+k"],
+        "command": "emax_kill_line"
+    },
+    {
+        "keys": ["ctrl+w"],
+        "command": "emax_kill_region"
+    },
+    {
+        "keys": ["meta+w"],
+        "command": "emax_kill_ring_save"
+    },
+    {
+        "keys": ["ctrl+x", "k"],
+        "command": "close"
+    },
+    {
+        "keys": ["ctrl+o"],
+        "command": "emax_open_line"
+    },
+    {
+        "keys": ["ctrl+l"],
+        "command": "show_at_center"
+    },
+    {
+        "keys": ["ctrl+x", "ctrl+s"],
+        "command": "save"
+    },
+    {
+        "keys": ["ctrl+x", "ctrl+w"],
+        "command": "prompt_save_as"
+    },
+    {
+        "keys": ["ctrl+x", "b"],
+        "args": {"show_files": true, "overlay": "goto"},
+        "command": "show_overlay"
+    },
+    {
+        "keys": ["meta+x"],
+        "args": {"overlay": "command_palette"},
+        "command": "show_overlay"
+    },
+    {
+        "keys": ["ctrl+s"],
+        "args": {"reverse": false, "panel": "incremental_find"},
+        "command": "show_panel"
+    },
+    {
+        "keys": ["ctrl+r"],
+        "args": {"reverse": true, "panel": "incremental_find"},
+        "command": "show_panel"
+    },
+    {
+        "keys": ["ctrl+s"],
+        "command": "emax_maybe_restore_incremental_search",
+        "args": {"reverse": false},
+        "context":
+        [
+            {"key": "panel", "operand": "incremental_find"},
+            {"key": "panel_has_focus"}
+        ]
+    },
+    {
+        "keys": ["ctrl+r"],
+        "command": "emax_maybe_restore_incremental_search",
+        "args": {"reverse": true},
+        "context":
+        [
+            {"key": "panel", "operand": "incremental_find"},
+            {"key": "panel_has_focus"}
+        ]
+    },
+    {
+        "keys": ["meta+shift+."],
+        "args": {"to": "eof"},
+        "command": "move_to"
+    },
+    {
+        "keys": ["meta+shift+,"],
+        "args": {"to": "bof"},
+        "command": "move_to"
+    },
+    {
+        "keys": ["meta+/"],
+        "command": "auto_complete"
+    },
+    {
+        "keys": ["meta+;"],
+        "command": "toggle_comment"
+    },
+    {
+        "keys": ["ctrl+v"],
+        "args": {"forward": true, "by": "pages"},
+        "command": "move"
+    },
+    {
+        "keys": ["ctrl+x", "o"],
+        "command": "emax_other_window"
+    },
+    {
+        "keys": ["meta+v"],
+        "args": {"forward": false, "by": "pages"},
+        "command": "move"
+    },
+    {
+        "keys": ["ctrl+x", "5", "0"],
+        "command": "close_window"
+    },
+    {
+        "keys": ["ctrl+x", "5", "2"],
+        "command": "new_window"
+    },
+    {
+        "keys": ["meta+."],
+        "args": {"text": "@", "overlay": "goto"},
+        "command": "show_overlay"
+    },
+    {
+        "keys": ["meta+shift+5"],
+        "args": {"panel": "replace"},
+        "command": "show_panel"
+    },
+    {
+        "keys": ["ctrl+f"],
+        "command": "move",
+        "args": {"forward": true, "by": "characters"}
+    },
+    {
+        "keys": ["ctrl+b"],
+        "command": "move",
+        "args": {"forward": false, "by": "characters"}
+    },
+    {
+        "keys": ["ctrl+n"],
+        "command": "move",
+        "args": {"forward": true, "by": "lines"}
+    },
+    {
+        "keys": ["ctrl+p"],
+        "command": "move",
+        "args": {"forward": false, "by": "lines"}
+    },
+    {
+        "keys": ["right"],
+        "command": "move",
+        "args": {"forward": true, "by": "characters"}
+    },
+    {
+        "keys": ["left"],
+        "command": "move",
+        "args": {"forward": false, "by": "characters"}
+    },
+    {
+        "keys": ["down"],
+        "command": "move",
+        "args": {"forward": true, "by": "lines"}
+    },
+    {
+        "keys": ["up"],
+        "command": "move",
+        "args": {"forward": false, "by": "lines"}
+    },
+    {
+        "keys": ["ctrl+x", "`"],
+        "command": "next_result"
+    },
+    {
+        "keys": ["meta+g", "n"],
+        "command": "next_result"
+    },
+    {
+        "keys": ["meta+g", "meta+n"],
+        "command": "next_result"
+    },
+    {
+        "keys": ["meta+g", "p"],
+        "command": "prev_result"
+    },
+    {
+        "keys": ["meta+g", "meta+p"],
+        "command": "prev_result"
+    },
+    {
+        "keys": ["meta+g", "meta+g"],
+        "command": "show_overlay",
+        "args": {"overlay": "goto", "text": ":"}
+    },
+    {
+        "keys": ["meta+g", "g"],
+        "command": "show_overlay",
+        "args": {"overlay": "goto", "text": ":"}
+    },
+    {
+        "keys": ["meta+r"],
+        "command": "build"
+    },
+    {
+        "keys": ["ctrl+x", "h"],
+        "command": "emax_mark_whole_buffer"
+    },
+    {
+        "keys": ["ctrl+c", "ctrl+c"],
+        "command": "emax_save_and_close"
+    },
+    {
+        "keys": ["ctrl+c", ">"],
+        "command": "indent"
+    },
+    {
+        "keys": ["ctrl+c", "<"],
+        "command": "unindent"
+    },
+    {
+        "keys": ["enter"],
+        "command": "emax_jump_to_hunk",
+        "context":
+        [
+            {
+                "key": "selector",
+                "operator": "equal",
+                "operand": "source.diff"
+            }
+        ]
+    },
+    {
+        "keys": ["enter"],
+        "command": "insert_snippet",
+        "args": {"contents": "\n\t$0\n"},
+        "context":
+        [
+            {
+                "key": "setting.auto_indent",
+                "operator": "equal",
+                "operand": true
+            },
+            {
+                "key": "selection_empty",
+                "operator": "equal",
+                "operand": true,
+                "match_all": true
+            },
+            {
+                "key": "preceding_text",
+                "operator": "regex_contains",
+                "operand": "\\{$",
+                "match_all": true
+            },
+            {
+                "key": "following_text",
+                "operator": "regex_contains",
+                "operand": "^\\}",
+                "match_all": true
+            }
+        ]
+    },
+    {
+        "keys": ["enter"],
+        "command": "insert_snippet",
+        "args": {"contents": "\n\t$0\n"},
+        "context":
+        [
+            {
+                "key": "setting.auto_indent",
+                "operator": "equal",
+                "operand": true
+            },
+            {
+                "key": "selection_empty",
+                "operator": "equal",
+                "operand": true,
+                "match_all": true
+            },
+            {
+                "key": "preceding_text",
+                "operator": "regex_contains",
+                "operand": "\\($",
+                "match_all": true
+            },
+            {
+                "key": "following_text",
+                "operator": "regex_contains",
+                "operand": "^\\)",
+                "match_all": true
+            }
+        ]
+    },
+    {
+        "keys": ["enter"],
+        "command": "insert_snippet",
+        "args": {"contents": "\n\t$0\n"},
+        "context":
+        [
+            {
+                "key": "setting.auto_indent",
+                "operator": "equal",
+                "operand": true
+            },
+            {
+                "key": "selection_empty",
+                "operator": "equal",
+                "operand": true,
+                "match_all": true
+            },
+            {
+                "key": "preceding_text",
+                "operator": "regex_contains",
+                "operand": "\\[$",
+                "match_all": true
+            },
+            {
+                "key": "following_text",
+                "operator": "regex_contains",
+                "operand": "^\\]",
+                "match_all": true
+            }
+        ]
+    },
+    {
+        "keys": ["\""],
+        "command": "insert_snippet",
+        "args": {"contents": "\"\n$0\n\"\"\""},
+        "context":
+        [
+            {
+                "key": "selection_empty",
+                "operator": "equal",
+                "operand": true,
+                "match_all": true
+            },
+            {
+                "key": "preceding_text",
+                "operator": "regex_contains",
+                "operand": "\"\"$",
+                "match_all": true
+            }
+        ]
+    },
+    {
+        "keys": ["'"],
+        "command": "insert_snippet",
+        "args": {"contents": "'\n$0\n'''"},
+        "context":
+        [
+            {
+                "key": "selection_empty",
+                "operator": "equal",
+                "operand": true,
+                "match_all": true
+            },
+            {
+                "key": "preceding_text",
+                "operator": "regex_contains",
+                "operand": "''$",
+                "match_all": true
+            }
+        ]
+    },
+    {
+        "keys": ["meta+n"],
+        "command": "new_file"
+    }
+]

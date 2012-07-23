@@ -25,3 +25,7 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+# Keymaps are automatically generated.
+
+*.sublime-keymap
