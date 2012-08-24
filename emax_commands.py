@@ -272,6 +272,18 @@ class EmaxKillLine(EmaxHelper):
         )
         set_clipboard(kill_ring.kill_ring.top())
 
+class EmaxDeleteWord(EmaxHelper):
+    """
+    Mimic 'delete-word' also known as 'M-d'.
+    """
+
+    def run(self, edit, **kwargs):
+        self.deactivate_mark()
+        self.view.run_command(
+            "delete_word",
+            kwargs
+        )
+        set_clipboard(kill_ring.kill_ring.top())
 
 
 class EmaxYank(EmaxHelper):

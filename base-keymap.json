@@ -182,7 +182,7 @@
         "args": {
             "forward": true
         },
-        "command": "delete_word"
+        "command": "emax_delete_word"
     },
     {
         "keys": ["meta+backspace"],
