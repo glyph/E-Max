@@ -764,3 +764,45 @@ class EmaxOtherWindowCommand(WindowCommand):
 
 
 
+class EmaxSplitWindowRightCommand(WindowCommand):
+    """
+    Similar to 'split-window-right', i.e. C-x 2.
+
+    Divide the current window into half inserting a new window on the right.
+    """
+
+    layout_key = 'cols'
+    new_cell_indices = [0, 2]
+
+    def run(self):
+        active = self.window.active_group()
+
+        layout = self.window.get_layout()
+
+        pcnts = layout[self.layout_key]
+
+        pcnts.insert(active + 1,
+                     pcnts[active] + (pcnts[active + 1] - pcnts[active]) * 0.5)
+
+        current_cell = layout['cells'][active]
+
+        next_cell = current_cell[:]
+        for i in self.new_cell_indices:
+            next_cell[i] += 1
+
+        layout['cells'].insert(active + 1, next_cell)
+
+        self.window.set_layout(layout)
+
+
+
+class EmaxSplitWindowBelowCommand(EmaxSplitWindowRightCommand):
+    """
+    Similar to 'split-window-below', i.e. C-x 3.
+
+    Divide the current window into half inserting a new window below the
+    current window.
+    """
+
+    layout_key = 'rows'
+    new_cell_indices = [1, 3]

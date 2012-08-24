@@ -339,6 +339,14 @@
         "command": "emax_other_window"
     },
     {
+        "keys": ["ctrl+x", "2"],
+        "command": "emax_split_window_right"
+    },
+    {
+        "keys": ["ctrl+x", "3"],
+        "command": "emax_split_window_below"
+    },
+    {
         "keys": ["meta+v"],
         "args": {"forward": false, "by": "pages"},
         "command": "move"
