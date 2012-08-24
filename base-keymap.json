@@ -216,6 +216,10 @@
         "command": "undo"
     },
     {
+        "keys": ["ctrl+/"],
+        "command": "undo"
+    },
+    {
         "keys": ["meta+ctrl+shift+-"],
         "command": "redo"
     },
