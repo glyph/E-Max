@@ -182,7 +182,7 @@
         "args": {
             "forward": true
         },
-        "command": "delete_word"
+        "command": "emax_delete_word"
     },
     {
         "keys": ["meta+backspace"],
@@ -213,6 +213,10 @@
     },
     {
         "keys": ["ctrl+shift+-"],
+        "command": "undo"
+    },
+    {
+        "keys": ["ctrl+/"],
         "command": "undo"
     },
     {
