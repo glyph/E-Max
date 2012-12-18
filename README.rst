@@ -23,5 +23,23 @@ contortionists will have no difficulty with – control-meta-shift-quote – and
 can instantly disable all emacs-like behavior and go back to the platform-
 variable Sublime Text defaults.
 
+Installation
+------------
+
+Copy all files from this directory into a directory called E-Max in your
+Sublime Text 2 Packages directory.  If you use git, you can do that very
+easily:
+
+  $ cd ~/config/sublime-text-2/Packages
+  $ git clone https://github.com/glyph/E-Max.git
+
+If you do this correctly, you'll then see "E-Max: ON" in the mode line in
+Sublime.
+
+On Mac OS X and Windows the Packages directory is located elsewhere. You
+can determine its location from inside Sublime: use "View" / "Show Console"
+to open the console, paste the command sublime.packages_path() and then
+press ENTER.
+
 
 Copyright © 2012
