@@ -91,14 +91,15 @@ class RegularParagraph(object):
                 active.setIsHeading(stripped[0])
                 self._headingPoints = self.pointTracker.extractPoints(line)
                 # FIXME: should respect leading indentation.
-                active = self.more = self.nextRegular()
+                active = self.nextRegular()
             elif (firstword == '-' or
                   (firstword.endswith(".") and firstword[:-1].isdigit())):
                 # Aesthetically I prefer a 2-space indent here, but the
                 # convention in the codebase seems to be 4 spaces.
                 hangIndent = self.pointTracker.lengthOf(firstword) + 1
                 fp = RegularParagraph(
-                    pointTracker=self.pointTracker, fixedIndent="    ",
+                    pointTracker=self.pointTracker,
+                    fixedIndent=active.fixedIndent,
                     hangIndent=" " * hangIndent, followIndent=self.followIndent
                 )
                 fp.words.extend(line.split())
@@ -107,9 +108,7 @@ class RegularParagraph(object):
                 self.words.extend(line.split())
             if stripped.endswith("::"):
                 active.more = PreFormattedParagraph(
-                    pointTracker=self.pointTracker,
-                    fixedIndent=(active.fixedIndent + active.hangIndent +
-                                 active.otherIndent),
+                    active,
                     indentBegins=len(clean) - len(clean.lstrip())
                 )
                 active = active.more
@@ -178,10 +177,14 @@ class RegularParagraph(object):
                 self.otherIndent)
 
 
+    def genRegular(self):
+        return RegularParagraph(pointTracker=self.pointTracker,
+                                fixedIndent=self.nextIndent(),
+                                followIndent=self.nextIndent())
+
+
     def nextRegular(self):
-        self.more = RegularParagraph(pointTracker=self.pointTracker,
-                                     fixedIndent=self.nextIndent(),
-                                     followIndent=self.nextIndent())
+        self.more = self.genRegular()
         return self.more
 
 
@@ -217,8 +220,15 @@ class FieldParagraph(RegularParagraph):
 
 class PreFormattedParagraph(object):
 
-    def __init__(self, pointTracker, fixedIndent, indentBegins):
+    def __init__(self, before, indentBegins):
         self.lines = []
+        self.before = before
+
+        pointTracker = before.pointTracker
+
+        fixedIndent = (before.fixedIndent + before.hangIndent +
+                       before.otherIndent)
+
         self.indentBegins = indentBegins
         self.fixedIndent = fixedIndent
         self.more = None
@@ -234,10 +244,7 @@ class PreFormattedParagraph(object):
 
         if actualLine.strip():
             if len(actualLine) - len(actualLine.lstrip()) <= self.indentBegins:
-                next = self.more = RegularParagraph(
-                    pointTracker=self.pointTracker,
-                    fixedIndent=self.fixedIndent
-                )
+                next = self.more = self.before.genRegular()
                 return next.add(line)
             self.lines.append(line.rstrip())
         else:
@@ -396,5 +403,11 @@ def wrapPythonDocstring(docstring, output, indentation="    ",
 
 if __name__ == '__main__':
     import sys
-    wrapPythonDocstring(sys.stdin.read(), sys.stdout)
-
+    from cStringIO import StringIO
+    io = StringIO()
+    indata = sys.stdin.read()
+    firstline = [line for line in indata.split("\n") if line][0]
+    wrapPythonDocstring(indata, io,
+                        indentation=" " * (len(firstline) - len(firstline.lstrip())))
+    sys.stdout.write(io.getvalue())
+    sys.stdout.flush()
