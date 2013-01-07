@@ -9,7 +9,7 @@ Utility for wrapping docstrings in Python; specifically, docstrings in U{Epytext
 <http://epydoc.sourceforge.net/manual-epytext.html>} format, or those that are
 close enough.
 
-The wrapping herein generally aheres to all the conventions set forth by the
+The wrapping herein generally adheres to all the conventions set forth by the
 Twisted project U{http://twistedmatrix.com/}.
 
 Currently (obviously) the only supported editor is U{Sublime Text 2
