@@ -32,7 +32,8 @@ __all__ = [
 def isUnderline(expr):
     return bool(re.match("[=]+$", expr) or re.match("[-]+$", expr))
 
-
+def startslist(x):
+    return (x == '-' or (x.endswith(".") and x[:-1].isdigit()))
 
 class RegularParagraph(object):
     otherIndent = ""
@@ -92,15 +93,21 @@ class RegularParagraph(object):
                 self._headingPoints = self.pointTracker.extractPoints(line)
                 # FIXME: should respect leading indentation.
                 active = self.nextRegular()
-            elif (firstword == '-' or
-                  (firstword.endswith(".") and firstword[:-1].isdigit())):
+            elif startslist(firstword):
                 # Aesthetically I prefer a 2-space indent here, but the
                 # convention in the codebase seems to be 4 spaces.
+                LIST_INDENT = 4
+                # FIXME: this also needs to respect leading indentation so it
+                # can properly represent nested lists.
                 hangIndent = self.pointTracker.lengthOf(firstword) + 1
+                fi = self.fixedIndent
+                if not (self.words and startslist(self.words[0])):
+                    fi += (" " * LIST_INDENT)
                 fp = RegularParagraph(
                     pointTracker=self.pointTracker,
-                    fixedIndent=active.fixedIndent,
-                    hangIndent=" " * hangIndent, followIndent=self.followIndent
+                    fixedIndent=fi,
+                    hangIndent=" " * hangIndent,
+                    followIndent=self.followIndent,
                 )
                 fp.words.extend(line.split())
                 active = self.more = fp
