@@ -741,8 +741,11 @@ class EmaxFillParagraph(TextCommand):
             origPoint = orig.a - torepl.a
             io = StringIO()
             origText = self.view.substr(torepl)
+            lineLength = self.view.settings().get("wrap_width")
+            if not lineLength:
+                lineLength = 79
             newPoint = wrapPythonDocstring(
-               origText, io, indentation, point=origPoint
+               origText, io, indentation, point=origPoint, width=lineLength
             ) + torepl.a
             val = io.getvalue()
             if val != origText:
