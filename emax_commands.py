@@ -715,6 +715,31 @@ class EmaxExchangePointAndMark(EmaxHelper):
 
 
 
+def overlapping(view, point, scopeNames):
+    """
+    Extract a region that defines a scope, whose name matches one of a given
+    set of scope names, that overlaps the given point.
+
+    @param view: a sublime view
+    @type view: L{sublime.View}
+
+    @param point: an offset into the view, the one we're looking for in a scope
+        (usually representative of a cursor / single-element selection)
+    @type point: L{int}
+
+    @param scopeNames: a set of strings naming scopes.
+    @type scopeNames: C{iterable} of L{unicode}
+
+    @return: a region that spans one of the named scopes.
+    @rtype: L{sublime.Region} or L{NoneType}
+    """
+    for name in scopeNames:
+        for region in view.find_by_selector(name):
+            if region.a <= point <= region.b:
+                return region
+
+
+
 class EmaxFillParagraph(TextCommand):
     """
     Similar to 'fill-paragraph', i.e. M-q.
@@ -729,12 +754,15 @@ class EmaxFillParagraph(TextCommand):
         Fill a paragraph around the first point.
         """
         scopes = self.view.scope_name(self.view.sel()[0].a).split()
+        desired = set([
+            'string.quoted.double.block.python',
+            'string.quoted.single.block.python',
+        ])
 
-        if ( 'string.quoted.double.block.python' in scopes or
-             'string.quoted.single.block.python' in scopes ):
+        if desired.intersection(set(scopes)):
             from epywrap import wrapPythonDocstring
             orig = self.view.sel()[0]
-            scope = self.view.extract_scope(orig.a)
+            scope = overlapping(self.view, orig.a, desired)
             startline = self.view.substr(self.view.line(scope.a))
             indentation = startline[:len(startline) - len(startline.lstrip())]
             torepl = Region(scope.a + 3, scope.b - 3)
