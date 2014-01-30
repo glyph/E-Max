@@ -343,6 +343,10 @@
         "command": "emax_other_window"
     },
     {
+        "keys": ["ctrl+x", "1"],
+        "command": "emax_delete_other_windows"
+    },
+    {
         "keys": ["ctrl+x", "2"],
         "command": "emax_split_window_right"
     },

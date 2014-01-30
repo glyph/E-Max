@@ -806,6 +806,21 @@ class EmaxOtherWindowCommand(WindowCommand):
         )
 
 
+class EmaxDeleteOtherWindows(WindowCommand):
+    """
+    Similar to 'delete-other-windows', i.e. C-x 1.
+
+    Delete all other windows except the active one
+    """
+    def run(self):
+        active = self.window.active_group()
+        layout = self.window.get_layout()
+
+        layout['cells'] = [[0, 0, 1, 1]]
+        layout['rows'] = [0, 1]
+        layout['cols'] = [0, 1]
+        self.window.set_layout(layout)
+
 
 class EmaxSplitWindowRightCommand(WindowCommand):
     """
